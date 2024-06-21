@@ -1,0 +1,33 @@
+<div class="tank-container">
+  <div class="tank-name">Water Level</div>
+  <div class="tank">
+    <div class="line-container">
+      <div class="line-label" [ngClass]="{'highlighted': waterLevel >= 100}">
+        <div class="line"></div>
+        <div class="label">100%</div>
+      </div>
+      <div class="line-label" [ngClass]="{'highlighted': waterLevel >= 80}">
+        <div class="line"></div>
+        <div class="label">80%</div>
+      </div>
+      <div class="line-label" [ngClass]="{'highlighted': waterLevel >= 60}">
+        <div class="line"></div>
+        <div class="label">60%</div>
+      </div>
+      <div class="line-label" [ngClass]="{'highlighted': waterLevel >= 40}">
+        <div class="line"></div>
+        <div class="label">40%</div>
+      </div>
+      <div class="line-label" [ngClass]="{'highlighted': waterLevel >= 20}">
+        <div class="line"></div>
+        <div class="label"  [ngClass]="{'highlighted': waterLevel >= 20}">20%</div>
+      </div>
+      <div class="line-label" [ngClass]="{'highlighted': waterLevel >= 0}">
+        <div class="line"></div>
+        <div class="label"  [ngClass]="{'highlighted': waterLevel >= 0}">0%</div>
+      </div>
+    </div>
+    <div class="water" [style.height.%]="waterLevel"></div>
+  </div>
+  <div class="percentage">{{ waterLevel }}%</div>
+</div>
