@@ -1,0 +1,117 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Full height of the viewport
+  background-color: white; // Set background color of the container
+}
+
+.tank-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw; // 90% of the viewport width
+  max-width: 400px; // Maximum width to maintain aspect ratio
+  height: 90vh; // 90% of the viewport height
+  max-height: 800px; // Maximum height to maintain aspect ratio
+  text-align: center; // Center the text
+}
+
+.tank {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 80px); // Adjust height to fit within container minus the name and percentage text height
+  border: 2px solid #000;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.8); // Semi-transparent black to make the water more visible
+  border-radius: 20px; // Rounded edges for the tank
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Add some shadow for a 3D effect
+
+  // Add a lid to the tank
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px; // Move above the tank
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 20px;
+    background-color: #000;
+    border-radius: 10px 10px 0 0; // Rounded top edges
+  }
+
+  // Add percentage lines and labels
+  .line-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0; // Space for the labels
+    color: rgb(0, 0, 0);
+    z-index: 10; // Ensure lines are above water
+
+    .line-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .line {
+        flex: 1;
+        height: 1px;
+        background-color: rgb(0, 0, 0, 0.1);
+        transition: background-color 0.3s; // Smooth transition for color change
+      }
+
+      .label {
+        margin-left: 5px;
+        font-size: 0.8rem; // Smaller font size for the labels
+        color: rgb(0, 0, 0, 0.1); // Initially set label color to black
+        transition: color 0.3s; // Smooth transition for color change
+      }
+
+      &.highlighted {
+        .line {
+          font-weight: bold;
+          background-color: rgba(255, 255, 255, 0.9); // Semi-transparent white for highlighted lines
+        }
+        .label {
+          font-weight: bold;
+          color: rgba(255, 255, 255, 0.9); // Semi-transparent white for highlighted labels
+        }
+      }
+    }
+  }
+}
+
+.tank-name {
+  font-size: 1.5rem; // Font size for the name
+  font-weight: bold;
+  color: #000; // Set color of the tank name
+  margin-bottom: 10px; // Space between name and tank
+  z-index: 15; // Ensure name is above everything else
+}
+
+.water {
+  width: 100%;
+  background: #0E87CC; // Semi-transparent blue water color
+  position: absolute;
+  bottom: 0;
+  transition: height 1s ease-out;
+  border-radius: 0 0 20px 20px; // Rounded bottom edges to match the tank
+  z-index: 5; // Ensure water is behind percentage lines
+}
+
+.percentage {
+  margin-top: 10px;
+  font-size: 2rem; // Responsive font size
+  font-weight: bold;
+  color: #000; // Set color of the percentage text
+  z-index: 15; // Ensure percentage is above everything else
+}
+
+.white-text {
+  color: white !important; // Override label color to white when water level passes the line
+}
